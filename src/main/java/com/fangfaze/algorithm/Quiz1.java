@@ -23,4 +23,3 @@ public class Quiz1 {
         return max;
     }
 }
-¬
