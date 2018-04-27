@@ -13,7 +13,6 @@ public class Quiz4 {
 
     public final int[] list;
 
-
     public void findIndex(int k) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < list.length; ++i) {
