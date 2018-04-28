@@ -24,6 +24,5 @@ public class Quiz4 {
                 map.put(x, i);
             }
         }
-
     }
 }
