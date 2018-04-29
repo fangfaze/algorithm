@@ -19,9 +19,9 @@ import java.util.concurrent.TimeUnit;
 public class multiThreadTest {
 
 
-    final int THREADS = 3;
-
+    int THREADS = 3;
     private CountDownLatch countDownLatch = new CountDownLatch(THREADS);
+
 
     @Test
     public void testMultiThread() throws InterruptedException {
@@ -37,10 +37,37 @@ public class multiThreadTest {
             System.out.println(Thread.currentThread() + ":" + (System.currentTimeMillis() - now));
             countDownLatch.countDown();
         };
+
         for (int i = 0; i < THREADS; ++i) {
             new Thread(runnable).start();
         }
         countDownLatch.await(1000, TimeUnit.MILLISECONDS);
         System.out.println("final");
     }
-} 
+
+    @Test
+    public void testMultiThread1() throws InterruptedException {
+
+        class MyThread extends Thread {
+            final Object lock = new Object();
+
+            @Override
+            public void run() {
+                {
+                    for (int i = 0; i < 100; ++i) {
+                        synchronized (MyThread.class) {
+                            System.out.println(i);
+                        }
+                    }
+                    countDownLatch.countDown();
+                }
+            }
+        }
+        for (int i = 0; i < 10; ++i) {
+            Thread thread = new MyThread();
+            thread.start();
+            thread.join();
+        }
+        System.out.println("final");
+    }
+}
