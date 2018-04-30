@@ -10,10 +10,10 @@ public class Quiz2 {
 
     public void flow() {
         while (n != 1) {
-        System.out.println(Integer.toBinaryString(n));
             if (n % 2 == 0) {
                 n = n / 2;
             } else {
+                System.out.println(Integer.toBinaryString(n));
                 n = 3 * n + 1;
             }
         }
