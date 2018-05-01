@@ -16,7 +16,6 @@ public class Storage {
         return true;
     }
 
-
     synchronized public boolean reduce() throws InterruptedException {
         if (goods <= 0) {
             wait();
