@@ -21,10 +21,13 @@ public class StorageTest {
         final Random random = new Random(System.currentTimeMillis());
         Runnable provider = () -> {
             for (int i = 0; i < 1000; ++i) {
-                int wait = random.nextInt(10);
+//                int wait = random.nextInt(10);
                 try {
-                    Thread.sleep(wait);
-                    storage.add();
+//                    Thread.sleep(wait);
+                    if (!storage.add()) {
+                        --i;
+                    }
+                    Thread.yield();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -32,10 +35,13 @@ public class StorageTest {
         };
         Runnable customer = () -> {
             for (int i = 0; i < 1000; ++i) {
-                int wait = random.nextInt(10);
+ //               int wait = random.nextInt(10);
                 try {
-                    Thread.sleep(wait);
-                    storage.reduce();
+//                    Thread.sleep(wait);
+                    if (!storage.reduce()) {
+                        --i;
+                    }
+                    Thread.yield();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
