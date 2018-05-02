@@ -56,5 +56,4 @@ public class StorageBQTest {
         }
         countDownLatch.await(10000, TimeUnit.MILLISECONDS);
     }
-
 } 
