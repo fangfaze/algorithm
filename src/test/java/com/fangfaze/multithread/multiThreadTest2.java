@@ -50,12 +50,11 @@ public class multiThreadTest2 {
         Callable<Integer> callable = () -> {
             Thread.sleep(100);
             return random.nextInt(100);
-
         };
         Future<Integer> future = e.submit(callable);
-        while (!future.isDone()) {
-            System.out.println(System.currentTimeMillis());
-        }
-//        System.out.println(future.get());
+//        while (!future.isDone()) {
+//            System.out.println(System.currentTimeMillis());
+//        }
+        System.out.println(future.get());
     }
 }
