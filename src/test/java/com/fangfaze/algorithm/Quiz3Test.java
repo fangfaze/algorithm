@@ -26,4 +26,18 @@ public class Quiz3Test {
         q3.sort();
         System.out.println(Arrays.toString(q3.list));
     }
+
+
+    @Test
+    public void test() {
+        String num = "";
+        for (int i = 0; i < 10; ++i) {
+            String str = "1";
+            num += str;
+            int x = Integer.parseInt(num, 2);
+            System.out.println(Integer.toBinaryString(x * 3));
+        }
+
+
+    }
 }

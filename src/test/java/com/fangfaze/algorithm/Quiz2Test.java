@@ -18,6 +18,6 @@ public class Quiz2Test {
      */
     @Test
     public void testFlow() throws Exception {
-        new Quiz2(31).flow();
+        new Quiz2(0b111111).flow();
     }
 }
