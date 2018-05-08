@@ -19,10 +19,17 @@ public class CollatzTest {
      */
     @Test
     public void testFlow() throws Exception {
-        Collatz collatz = new Collatz(new BigInteger("5678907890806870790675665456125432532454657754665234542123958890"));
+        BigInteger bigInteger = new BigInteger("111111", 2);
+        Collatz collatz = new Collatz(bigInteger);
         collatz.flow();
-
     }
 
-
+    @Test
+    public void testTest() {
+        BigInteger bigInteger1 = BigInteger.ONE;
+        for (int i = 0; i < 100; ++i) {
+            bigInteger1 = bigInteger1.multiply(new BigInteger("2"));
+            System.out.println(bigInteger1.toString(6));
+        }
+    }
 } 

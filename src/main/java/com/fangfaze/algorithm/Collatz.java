@@ -1,6 +1,9 @@
 package com.fangfaze.algorithm;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Collatz {
     // 尝试证明
@@ -14,25 +17,26 @@ public class Collatz {
     }
 
     public void flow() {
+        int count = 0;
+        int count_2 = 0;
+        int count_3 = 0;
         final BigInteger two = new BigInteger("2");
         final BigInteger three = new BigInteger("3");
         while (bigInteger.compareTo(BigInteger.ONE) != 0) {
             BigInteger[] results = bigInteger.divideAndRemainder(two);
             if (results[1].compareTo(BigInteger.ZERO) == 0) {
+                ++count;
+                ++count_2;
+                System.out.println(bigInteger.toString(6) + ":" + count + ":_" + count_2);
                 bigInteger = results[0];
             } else {
-                System.out.println(bigInteger.toString(2));
-                bigInteger = bigInteger.multiply(three).add(BigInteger.ONE);
+                BigInteger bigIntegerNew = bigInteger.multiply(three).add(BigInteger.ONE);
+                ++count;
+                ++count_3;
+                System.out.println(bigInteger.toString(6) + ":" + count + ":^" + count_3);
+                bigInteger = bigIntegerNew;
             }
         }
-        System.out.println(bigInteger.toString(2));
+        System.out.println(bigInteger.toString());
     }
-
-
-
-
-
-
-
-
 }
