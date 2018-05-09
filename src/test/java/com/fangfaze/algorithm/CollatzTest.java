@@ -5,6 +5,10 @@ import org.junit.Before;
 import org.junit.After;
 
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Collatz Tester.
@@ -19,17 +23,27 @@ public class CollatzTest {
      */
     @Test
     public void testFlow() throws Exception {
-        BigInteger bigInteger = new BigInteger("111111", 2);
-        Collatz collatz = new Collatz(bigInteger);
-        collatz.flow();
+
+        Map<BigInteger, BigInteger> map = new HashMap<>();
+        for (int i = 1; i < 10000; ++i) {
+            BigInteger bigInteger = new BigInteger(String.valueOf(i));
+            Collatz collatz = new Collatz(bigInteger);
+            BigInteger max = collatz.max();
+            if (max.compareTo(bigInteger) >= 0) {
+                map.put(max, bigInteger);
+            }
+        }
+        map.forEach((max, index) -> System.out.println(max.toString(2) + "==>" + index.toString(2)));
+
     }
 
     @Test
-    public void testTest() {
-        BigInteger bigInteger1 = BigInteger.ONE;
-        for (int i = 0; i < 100; ++i) {
-            bigInteger1 = bigInteger1.multiply(new BigInteger("2"));
-            System.out.println(bigInteger1.toString(6));
-        }
+    public void test2() {
+        BigInteger bigInteger = new BigInteger("33233341", 6);
+        Collatz collatz = new Collatz(bigInteger);
+        collatz.flow(2);
+
     }
-} 
+
+
+}
