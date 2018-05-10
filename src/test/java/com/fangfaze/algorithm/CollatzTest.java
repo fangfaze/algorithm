@@ -45,5 +45,14 @@ public class CollatzTest {
 
     }
 
+    @Test
+    public void test3() {
+        BigInteger bigInteger = new BigInteger("1");
+        for (int i = 0; i < 100; ++i) {
+            bigInteger = bigInteger.add(bigInteger);
+            System.out.println(bigInteger.toString(3));
+        }
+    }
+
 
 }
