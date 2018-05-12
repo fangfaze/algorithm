@@ -46,8 +46,6 @@ public class CollatzTest {
             Collatz collatz = new Collatz(bigInteger);
             collatz.flow(2);
         }
-
-
     }
 
     @Test
@@ -58,5 +56,14 @@ public class CollatzTest {
             System.out.println(bigInteger.toString(3));
         }
     }
+
+    @Test
+    public void test4() {
+        BigInteger bigInteger = new BigInteger("111");
+        Collatz collatz = new Collatz(bigInteger);
+        collatz.find(1);
+
+    }
+
 
 }

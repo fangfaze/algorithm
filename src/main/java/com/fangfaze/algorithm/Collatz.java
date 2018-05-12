@@ -13,11 +13,15 @@ public class Collatz {
         this.bigInteger = bigInteger;
     }
 
-    public void flow(int redix) {
-        flow(redix, null, null);
+    public BigInteger find(int max1) {
+        BigInteger result = bigInteger;
+        bigInteger.add(BigInteger.ONE);
+        return result;
+
     }
 
-    public void flow(int radix, FlowInterface act1, FlowInterface act2) {
+
+    public void flow(int radix) {
         int count = 0;
         int count_2 = 0;
         int count_3 = 0;
@@ -28,13 +32,11 @@ public class Collatz {
             if (results[1].compareTo(BigInteger.ZERO) == 0) {
                 ++count;
                 ++count_2;
-                act2.apply(bigInteger.toString(radix));
                 bigInteger = results[0];
             } else {
                 BigInteger bigIntegerNew = bigInteger.multiply(three).add(BigInteger.ONE);
                 ++count;
                 ++count_3;
-                act2.apply(bigInteger.toString(radix));
                 System.out.println(bigInteger.toString(radix) + ":" + getMax1(bigInteger));
                 bigInteger = bigIntegerNew;
             }
@@ -83,15 +85,11 @@ public class Collatz {
 
         return maxCount;
     }
-
-
-
-
 }
 
 // 证明思路:
 // 1: 二进制分段
 // 2: 证明分段可降解与整体可降解的关系
-// 3: 证明分段可降解时,
+// 3: 证明分段可降解时,寻找分段变换规律.
 
 
