@@ -25,7 +25,7 @@ public class CollatzTest {
     public void testFlow() throws Exception {
 
         Map<BigInteger, BigInteger> map = new HashMap<>();
-        for (int i = 1; i < 10000; ++i) {
+        for (int i = 1; i < 1000; ++i) {
             BigInteger bigInteger = new BigInteger(String.valueOf(i));
             Collatz collatz = new Collatz(bigInteger);
             BigInteger max = collatz.max();
@@ -39,9 +39,14 @@ public class CollatzTest {
 
     @Test
     public void test2() {
-        BigInteger bigInteger = new BigInteger("33233341", 6);
-        Collatz collatz = new Collatz(bigInteger);
-        collatz.flow(2);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < 10; ++i) {
+            stringBuilder.append("1");
+            BigInteger bigInteger = new BigInteger(stringBuilder.toString(), 2);
+            Collatz collatz = new Collatz(bigInteger);
+            collatz.flow(2);
+        }
+
 
     }
 
@@ -53,6 +58,5 @@ public class CollatzTest {
             System.out.println(bigInteger.toString(3));
         }
     }
-
 
 }

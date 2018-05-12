@@ -13,11 +13,14 @@ public class Collatz {
         this.bigInteger = bigInteger;
     }
 
-    public void flow(int radix) {
+    public void flow(int redix) {
+        flow(redix, null, null);
+    }
+
+    public void flow(int radix, FlowInterface act1, FlowInterface act2) {
         int count = 0;
         int count_2 = 0;
         int count_3 = 0;
-        BigInteger max = BigInteger.ZERO;
         final BigInteger two = new BigInteger("2");
         final BigInteger three = new BigInteger("3");
         while (bigInteger.compareTo(BigInteger.ONE) != 0) {
@@ -25,16 +28,14 @@ public class Collatz {
             if (results[1].compareTo(BigInteger.ZERO) == 0) {
                 ++count;
                 ++count_2;
-                System.out.println(bigInteger.toString(radix) + ":" + count + ":_" + count_2);
+                act2.apply(bigInteger.toString(radix));
                 bigInteger = results[0];
             } else {
                 BigInteger bigIntegerNew = bigInteger.multiply(three).add(BigInteger.ONE);
                 ++count;
                 ++count_3;
-                System.out.println(bigInteger.toString(radix) + ":" + count + ":^" + count_3);
-                if (max.compareTo(bigInteger) < 0) {
-                    max = bigInteger;
-                }
+                act2.apply(bigInteger.toString(radix));
+                System.out.println(bigInteger.toString(radix) + ":" + getMax1(bigInteger));
                 bigInteger = bigIntegerNew;
             }
         }
@@ -66,4 +67,31 @@ public class Collatz {
         }
         return max;
     }
+
+    public int getMax1(final BigInteger bigInteger) {
+        final String string = bigInteger.toString(2);
+        int maxCount = 0;
+        int count = 0;
+        for (char ch : string.toCharArray()) {
+            if (ch == '1') {
+                ++count;
+            } else {
+                maxCount = count > maxCount ? count : maxCount;
+                count = 0;
+            }
+        }
+
+        return maxCount;
+    }
+
+
+
+
 }
+
+// 证明思路:
+// 1: 二进制分段
+// 2: 证明分段可降解与整体可降解的关系
+// 3: 证明分段可降解时,
+
+
